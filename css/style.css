@@ -1,0 +1,32 @@
+body {
+  /* Solução Rodapé (Parte 1) */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-image: url(../imagens/textura.png);
+  background-attachment: fixed;
+}
+
+/* Solução Rodapé (Parte 2) */
+main { flex: 1; }
+
+.card > .card-link { color: #181819; }
+.card > .card-link:hover { color: #0056b3; }
+
+#admin .nav-link {
+  color: white;
+}
+
+#admin .nav-link:hover,#admin .nav-link:focus {
+  background-color: white;
+  color: black;
+}
+
+#admin .navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* #admin .custom-file-label::after {
+  content: "Procurar" !important;
+} */
