@@ -4,6 +4,31 @@ require "../inc/cabecalho-admin.php";
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $usuario = lerUmUsuario($conexao, $id);
+
+
+if(isset($_POST['atualizar'])){
+  $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+  $email = filter_input(INPUT_POST, ' email', FILTER_SANITIZE_SPECIAL_CHARS);
+  $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_SPECIAL_CHARS);
+
+  /* Lógica para a senha
+  se o campo da senha do formulário estiver vazio,
+  então significa que o usuário NÃO MUDOU A SENHA. */
+  if(empty($_POST['senha']) ){
+    $senha = $usuario['senha']; // MANTER a senha ja existente no banco  
+  } else{
+
+  /* Caso contrário se o usuário digitou alguma coisa no campo senha,
+  precisaremos verificar a senha digitada. */
+    $senha = verificaSenha($_POST['senha'], $usuario['senha']);
+    
+  }
+  //Teste de senhas
+  echo $usuario['senha'];
+  echo "<br>";
+  echo "formulário: ". $senha;
+}
+
 ?>
   
 
