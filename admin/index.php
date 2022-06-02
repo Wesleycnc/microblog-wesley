@@ -3,10 +3,10 @@
         
     <article class="jumbotron bg-white shadow">
       <h2 class="display-4">
-      Olá Usuário Logado...
+      <?=$_SESSION['nome']?>
       </h2>
       <p class="lead">Você está no <b>painel de controle e administração</b> do
-  site Microblog e seu <b>nível de acesso</b> é <span class="badge badge-info">nível/tipo do usuário</span>.
+      site Microblog e seu <b>nível de acesso</b> é <span class="badge badge-info" ><?=$_SESSION['tipo']?></span>.
       </p>
       <hr class="my-4">
       <p class="lead">

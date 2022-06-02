@@ -5,7 +5,7 @@ de permissão de acesso dos usuários */
 
 
 /* VERIFICANDO SE NÃO EXISTE UMA SESSÃO EM FUNIONAMENTO */
-if(isset($_SESSION)){
+if(!isset($_SESSION)){
     session_start();
 }
 
@@ -34,7 +34,7 @@ function login(int $id, string $nome, string $email, string $tipo){
 function logout(){
     session_start();
     session_destroy();
-    header("location:../login.php");
+    header("location:../login.php?logout");
     die();
 
 }
