@@ -2,8 +2,9 @@
 require "conecta.php";
 
 /* Usada em post-insere.php */
-function inserirPost(mysqli $conexao){
-    $sql = "";
+function inserirPost(mysqli $conexao, string $titulo, string $texto, string $resumo, string $imagem, int $idUsuarioLogado){
+    $sql = "INSERT INTO posts(titulo, texto, resumo, imagem, usuario_id)
+    VALUES ('$titulo', '$texto', '$resumo', '$imagem', '$idUsuarioLogado', )";
     
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 } // fim inserirPost

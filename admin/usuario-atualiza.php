@@ -1,6 +1,7 @@
 <?php 
 require "../inc/funcoes-usuarios.php";
 require "../inc/cabecalho-admin.php";
+verificaAcessoAdmin();
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $usuario = lerUmUsuario($conexao, $id);
@@ -8,7 +9,7 @@ $usuario = lerUmUsuario($conexao, $id);
 
 if(isset($_POST['atualizar'])){
   $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
   $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_SPECIAL_CHARS);
 
   /* Lógica para a senha
