@@ -6,8 +6,8 @@ if(isset($_POST['inserir'])){
   $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
   $texto = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_SPECIAL_CHARS);
   $resumo = filter_input(INPUT_POST, 'resumo', FILTER_SANITIZE_SPECIAL_CHARS);
-  /* Upload de imagem */
 
+// obtendo dados do arquivo enviado
   $imagem = $_FILES['imagem'];
 
   // Função upload (responsavel por enviar o arquivo para o hd do servidor)

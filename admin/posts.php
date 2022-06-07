@@ -1,6 +1,12 @@
 <?php 
 require "../inc/cabecalho-admin.php"; 
+require "../inc/funcoes-posts.php";
 
+$idUsuarioLogado = $_SESSION['id'];
+$tipoUsuarioLogado = $_SESSION['tipo'];
+
+$posts = lerPosts($conexao, $idUsuarioLogado, $tipoUsuarioLogado);
+$quantidade = count($posts);
 ?>      
     
 <div class="row">
@@ -17,20 +23,28 @@ require "../inc/cabecalho-admin.php";
           <tr>
             <th>Título</th>
             <th>Data</th>
+
+            <?php if($tipoUsuarioLogado == 'admin'){ ?>
             <th>Autor</th>
+            <?php } ?>
+            
             <th colspan="2" class="text-center">Operações</th>
           </tr>
         </thead>
       
         <tbody>
-
+  <?php foreach($posts as $post) { ?>
           <tr>
-            <td> Título do post... </td>
-            <td> 21/12/2112 21:12 </td>
-            <td> Autor do post... </td>
+            <td> <?=$post['titulo']?> </td>
+            <td> <?=$post['data']?></td>
+
+            <?php if($tipoUsuarioLogado == 'admin'){ ?>
+            <td> <?=$post['autor']?> </td>
+            <?php } ?>
+
             <td class="text-center">
               <a class="btn btn-warning btn-sm" 
-              href="post-atualiza.php">
+              href="post-atualiza.php?id=<?=$post['id']?>">
                   Atualizar
               </a>
             </td>
@@ -41,7 +55,7 @@ require "../inc/cabecalho-admin.php";
               </a>
             </td>
           </tr>
-
+<?php } ?>
         </tbody>                
       </table>
       
