@@ -123,7 +123,7 @@ function formataData(string $data):string{
 
 /* Usada em index.php */
 function lerTodosOsPosts(mysqli $conexao):array {
-    $sql = "";
+    $sql = "SELECT id, titulo, imagem, resumo FROM posts ORDER BY data DESC";
     
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
     $posts = [];
@@ -136,8 +136,8 @@ function lerTodosOsPosts(mysqli $conexao):array {
 
 
 /* Usada em post-detalhe.php */
-function lerDetalhes(mysqli $conexao):array {    
-    $sql = "";
+function lerDetalhes(mysqli $conexao, int $idPost):array {    
+    $sql = "SELECT posts.id, posts.titulo, posts.imagem, posts.data, posts.texto, usuarios.nome AS autor FROM posts INNER JOIN usuarios ON posts.usuario_id = usuarios.id WHERE posts.id = $idPost";
 
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
     return mysqli_fetch_assoc($resultado); 
@@ -146,8 +146,8 @@ function lerDetalhes(mysqli $conexao):array {
 
 
 /* Usada em search.php */
-function busca($conexao):array {
-    $sql = "";
+function busca(mysqli $conexao, string $termo):array {
+    $sql = "SELECT id, titulo, data, resumo FROM posts WHERE titulo LIKE '%$termo%' OR resumo LIKE '%$termo%' OR texto LIKE '%$termo%' ORDER BY data DESC";
         
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
     $posts = [];
